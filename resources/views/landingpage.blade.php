@@ -58,10 +58,10 @@
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="{{ asset('layout/assets/img/slide1.jpg') }}" class="d-block w-100" alt="slide 1">
+				<img src="{{ asset('layout/assets/img/background.jpeg') }}" class="d-block w-100" alt="slide 1">
 			</div>
 			<div class="carousel-item">
-				<img src="{{ asset('layout/assets/img/slide2.jpg') }}" class="d-block w-100" alt="slide 2">
+				<img src="{{ asset('layout/assets/img/background2.jpeg') }}" class="d-block w-100" alt="slide 2">
 			</div>
 		</div>
 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -134,7 +134,7 @@
 					<a href="#">Home</a>
 				</li>
 				<li class="mt-3">
-					<a href="#">Best Seller</a>
+					<a href="#">Shopping Cart</a>
 				</li>
 				<li class="mt-3">
 					<a href="#">Category</a>
@@ -148,17 +148,17 @@
 			</ul>
 		</div>
 		<div class="col-md-3 mt-4 mt-sm-0">
-			<h3 class="mb-3">Company</h3>
-			<a href="#">john@example.com</a>
+			<h3 class="mb-3">Toko Sejahera</h3>
+			<a href="#">itenas@example.com</a>
 			<p>
-				Jln. Tamansiswa, No 32 Yogyakarta Indonesia
+				Jln. Phh Mustofa, No 23 Bandung Indonesia
 			</p>
 		</div>
 	</div>
 	<div class="row row-copy mt-4 mt-sm-0">
 		<div class="col-md-6">
 			<p>
-				&copy; 2023 IndoToko. All rights reserved.
+				&copy; 2023 Toko Sejahtera. All rights reserved.
 			</p>
 		</div>
 		<div class="col-md-6 text-sm-end">
