@@ -103,7 +103,7 @@
                             <!-- Tambahkan informasi produk lainnya sesuai kebutuhan -->
                             <div class="detail d-flex justify-content-between align-items-center mt-4">
                                 <p class="price">IDR {{ number_format($product->price, 2) }}</p>
-                                <a href="{{ route('product.show', $product->id) }}" class="btn-cart"><i
+                                <a href="{{ route('products.show', $product->id) }}" class="btn-cart"><i
                                         class="bx bx-cart-alt"></i></a>
                             </div>
                         </div>
