@@ -8,16 +8,24 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\LandingpageController;
 
-
 Route::controller(LandingpageController::class)->group(function () {
     Route::get('', 'index')->name('landingpage');
 });
 
 
 // Grup route untuk ProductController
-Route::group(['prefix' => 'products'], function () {
-    // Definisikan route untuk menampilkan detail produk
-    Route::get('/{id}', [ProductController::class, 'show'])->name('product.show');
+// Route::group(['prefix' => 'products'], function () {
+//     Route::get('/{id}', [ProductController::class, 'show'])->name('product.show');
+// });
+
+Route::prefix('products')->group(function () {
+    Route::get('', [ProductController::class, 'index'])->name('products');
+    Route::get('create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('store', [ProductController::class, 'store'])->name('products.store');
+    Route::get('{id}', [ProductController::class, 'show'])->name('products.show');
+    Route::get('edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('update/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -35,15 +43,8 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::controller(ProductController::class)->prefix('products')->group(function () {
-        Route::get('', 'index')->name('products');
-        Route::get('create', 'create')->name('products.create');
-        Route::post('store', 'store')->name('products.store');
-        Route::get('show/{id}', 'show')->name('products.show');
-        Route::get('edit/{id}', 'edit')->name('products.edit');
-        Route::put('edit/{id}', 'update')->name('products.update');
-        Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
-    });
+
+
 
     Route::controller(UsersController::class)->prefix('user')->group(function () {
         Route::get('', 'index')->name('user');

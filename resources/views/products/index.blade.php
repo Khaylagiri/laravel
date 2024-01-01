@@ -1,17 +1,17 @@
 @extends('layouts.app')
-  
+
 @section('title', 'Data Barang')
-  
+
 @section('contents')
     <!-- Page Heading and Add Product Button -->
     <div class="d-flex justify-content-between align-items-center">
-    <hr>
+        <hr>
         <h1 class="h3 mb-2 text-gray-800"></h1>
         <div>
-        <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Add Product</a>
+            <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Add Product</a>
         </div>
     </div>
-    
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
@@ -31,31 +31,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($products->count() > 0)
-                            @foreach($products as $rs)
+                        @if ($products->count() > 0)
+                            @foreach ($products as $rs)
                                 <tr>
                                     <td class="align-middle">{{ $loop->iteration }}</td>
-                                    <td class="align-middle"><img src="{{ asset('uploads/'.$rs->image) }}" alt="" width="100"></td>
+                                    <td class="align-middle"><img src="{{ asset('uploads/' . $rs->image) }}" alt=""
+                                            width="100"></td>
                                     <td class="align-middle">{{ $rs->nama }}</td>
                                     <td class="align-middle">{{ $rs->kategori->jenis }}</td>
                                     <td class="align-middle">{{ $rs->stok }}</td>
                                     <td class="align-middle">{{ $rs->harga }}</td>
                                     <td class="align-middle">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-    <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary mr-2">
-        <i class="fas fa-eye"></i> 
-    </a>
-    <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-warning mr-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <form action="{{ route('products.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-        @csrf
-        @method('DELETE')
-        <button class="btn btn-danger">
-            <i class="fas fa-trash-alt"></i> 
-        </button>
-    </form>
-</div>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ route('products.show', $rs->id) }}" type="button"
+                                                class="btn btn-secondary mr-2">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('products.edit', $rs->id) }}" type="button"
+                                                class="btn btn-warning mr-2">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('products.destroy', $rs->id) }}" method="POST"
+                                                type="button" class="btn btn-danger p-0"
+                                                onsubmit="return confirm('Delete?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
 
 
 

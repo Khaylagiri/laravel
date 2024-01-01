@@ -13,18 +13,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
         $products = Product::with('kategori')->orderBy('created_at', 'DESC')->get();
-    
         return view('products.index', compact('products'));
     }
 
     public function create()
     {
-        $categories = Kategori::all();
-        return view('products.create', compact('categories'));
+        $categories = Kategori::all(); // Mengambil semua kategori
+        return view('products.create', compact('categories')); // Mengirimkan kategori ke view
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,21 +36,21 @@ class ProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // Adjust the allowed file types and size as needed
             'stok' => 'required|integer',
         ]);
-    
+
         $input = $request->all();
-    
+
         // Handle image upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads'), $imageName);
-    
+
             $input['image'] = $imageName;
         }
-    
+
         // Create the product
         Product::create($input);
-    
+
         return redirect()->route('products')->with('success', 'Product added successfully');
     }
     /**
@@ -60,12 +58,12 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $categories = Kategori::all();
-        $product = Product::findOrFail($id);
-  
-        return view('products.show', compact('product'));
+        $product = Product::findOrFail($id); // Mengambil produk berdasarkan ID
+
+        return view('products.show', compact('product')); // Mengirimkan produk ke view
     }
-  
+
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -73,32 +71,32 @@ class ProductController extends Controller
     {
         $categories = Kategori::all();
         $product = Product::findOrFail($id);
-  
-        return view('products.edit', compact('product','categories'));
+
+        return view('products.edit', compact('product', 'categories'));
     }
-  
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-    
+
         $product = Product::findOrFail($id);
-  
+
         $product->update($request->all());
-  
+
         return redirect()->route('products')->with('success', 'product updated successfully');
     }
-  
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-  
+
         $product->delete();
-  
+
         return redirect()->route('products')->with('success', 'product deleted successfully');
     }
 }
